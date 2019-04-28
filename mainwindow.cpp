@@ -24,6 +24,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->Perc, SIGNAL(released()), this, SLOT(unary_pressed()));
     connect(ui->Promile, SIGNAL(released()), this, SLOT(unary_pressed()));
 
+    connect(ui->Cube, SIGNAL(released()), this, SLOT(square_pow_operations()));
+    connect(ui->Pow, SIGNAL(released()), this, SLOT(square_pow_operations()));
+    connect(ui->Sqrt, SIGNAL(released()), this, SLOT(square_pow_operations()));
+
     connect(ui->Add, SIGNAL(released()), this, SLOT(binary_pressed()));
     connect(ui->Sub, SIGNAL(released()), this, SLOT(binary_pressed()));
     connect(ui->Mult, SIGNAL(released()), this, SLOT(binary_pressed()));
@@ -180,49 +184,39 @@ void MainWindow::binary_pressed(){
     button->setChecked(true);
 }
 
-void MainWindow::on_Sqrt_released()
-{
+void MainWindow::square_pow_operations(){
+
+    QPushButton* button = (QPushButton*)sender();
     double label_number, number;
     QString new_label;
 
     number=ui->label->text().toDouble();
+
+    if(button->text()=="√"){
 
         label_number = qSqrt(number);
         new_label = QString::number(label_number,'g', 16);
         ui->label->setText(new_label);
         ui->Add->setChecked(false);
 
-    number_with_at_least_2_digits=false;
-}
-
-
-
-void MainWindow::on_Pow_released()
-{
-    double label_number, number;
-    QString new_label;
-
-    number=ui->label->text().toDouble();
+    }else if (button->text()=="x²") {
 
         label_number = number*number;
         new_label = QString::number(label_number,'g', 16);
         ui->label->setText(new_label);
         ui->Add->setChecked(false);
 
-    number_with_at_least_2_digits=false;
-}
+}else if(button->text()=="x³"){
 
-void MainWindow::on_Cube_released()
-{
-    double label_number, number;
-    QString new_label;
-
-    number=ui->label->text().toDouble();
 
         label_number = number*number*number;
         new_label = QString::number(label_number,'g', 16);
         ui->label->setText(new_label);
         ui->Add->setChecked(false);
 
-    number_with_at_least_2_digits=false;
-}
+    }
+          number_with_at_least_2_digits=false;
+    }
+
+
+

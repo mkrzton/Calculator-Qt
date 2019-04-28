@@ -24,12 +24,10 @@ private slots:
     void unary_pressed();
     void binary_pressed();
     void on_Dot_released();
-
+    void square_pow_operations();
     void on_Clear_released();
     void on_Equal_released();
-    void on_Sqrt_released();
-    void on_Pow_released();
-    void on_Cube_released();
+
 };
 
 #endif // MAINWINDOW_H
